@@ -4,7 +4,7 @@ import useTimers from "./hooks/useTimers";
 import { formatTime } from "./formatUtils";
 
 export default function Command() {
-  const { timers, customTimers, isLoading, refreshTimers, handleStartTimer, handleStopTimer, handleStartCT } =
+  const { timer, customTimers, isLoading, refreshTimers, handleStartTimer, handleStopTimer, handleStartCT } =
     useTimers();
   useEffect(() => {
     refreshTimers();
@@ -17,18 +17,16 @@ export default function Command() {
     <MenuBarExtra
       icon={Icon.Clock}
       isLoading={isLoading}
-      title={
-        timers != undefined && timers?.length > 0 ? `${timers[0].name}: ~${formatTime(timers[0].timeLeft)}` : undefined
-      }
+      title={timer && `${timer.name}: ~${formatTime(timer.timeLeft)}`}
     >
-      <MenuBarExtra.Item title="Click running timer to stop" />
-      {timers?.map((timer) => (
+      <MenuBarExtra.Item title="Click running sleep timer to stop" />
+      {timer && (
         <MenuBarExtra.Item
           title={timer.name + ": " + formatTime(timer.timeLeft) + " left"}
           key={timer.originalFile}
-          onAction={() => handleStopTimer(timer)}
+          onAction={() => handleStopTimer()}
         />
-      ))}
+      )}
 
       <MenuBarExtra.Separator />
       {Object.keys(customTimers)
@@ -45,44 +43,34 @@ export default function Command() {
 
       <MenuBarExtra.Separator />
       <MenuBarExtra.Item
-        title="Start 5 Minute Timer"
-        onAction={() => handleStartTimer(60 * 5, "5 Minute Timer")}
-        key="5M"
-      />
-      <MenuBarExtra.Item
-        title="Start 10 Minute Timer"
-        onAction={() => handleStartTimer(60 * 10, "10 Minute Timer")}
-        key="10M"
-      />
-      <MenuBarExtra.Item
-        title="Start 15 Minute Timer"
-        onAction={() => handleStartTimer(60 * 15, "15 Minute Timer")}
+        title="Start 15 Minute Sleep Timer"
+        onAction={() => handleStartTimer(60 * 15, "15 Minute Sleep Timer")}
         key="15M"
       />
       <MenuBarExtra.Item
-        title="Start 30 Minute Timer"
-        onAction={() => handleStartTimer(60 * 30, "30 Minute Timer")}
+        title="Start 30 Minute Sleep Timer"
+        onAction={() => handleStartTimer(60 * 30, "30 Minute Sleep Timer")}
         key="30M"
       />
       <MenuBarExtra.Item
-        title="Start 45 Minute Timer"
-        onAction={() => handleStartTimer(60 * 45, "45 Minute Timer")}
+        title="Start 45 Minute Sleep Timer"
+        onAction={() => handleStartTimer(60 * 45, "45 Minute Sleep Timer")}
         key="45M"
       />
       <MenuBarExtra.Item
-        title="Start 60 Minute Timer"
-        onAction={() => handleStartTimer(60 * 60, "60 Minute Timer")}
+        title="Start 60 Minute Sleep Timer"
+        onAction={() => handleStartTimer(60 * 60, "60 Minute Sleep Timer")}
         key="60M"
       />
       <MenuBarExtra.Item
-        title="Start 90 Minute Timer"
-        onAction={() => handleStartTimer(60 * 60 * 1.5, "90 Minute Timer")}
+        title="Start 90 Minute Sleep Timer"
+        onAction={() => handleStartTimer(60 * 60 * 1.5, "90 Minute Sleep Timer")}
         key="90M"
       />
 
-      <MenuBarExtra.Section title="Custom Timer">
+      <MenuBarExtra.Section title="Custom Sleep Timer">
         <MenuBarExtra.Item
-          title="Start Custom Timer"
+          title="Start Custom Sleep Timer"
           onAction={async () => await launchCommand({ name: "startCustomTimer", type: LaunchType.UserInitiated })}
           key="custom"
         />

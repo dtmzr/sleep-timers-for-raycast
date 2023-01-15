@@ -1,11 +1,12 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "timers",
-  "title": "Timers",
-  "description": "Start, stop, and save countdown timers, directly in Raycast, with no external dependencies.",
+  "name": "sleep-timers",
+  "title": "Sleep Timers",
+  "description": "Start, stop, and save sleep timers, directly in Raycast, with no external dependencies.",
   "icon": "command-icon.png",
-  "author": "ThatNerd",
+  "author": "dtmzr",
   "contributors": [
+    "ThatNerd",
     "marcjulian",
     "GastroGeek",
     "pernielsentikaer"
@@ -17,63 +18,39 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "start2MinuteTimer",
-      "title": "Start 2 Minute Timer",
-      "description": "Set a countdown for 2 minutes.",
-      "mode": "no-view"
-    },
-    {
-      "name": "start5MinuteTimer",
-      "title": "Start 5 Minute Timer",
-      "description": "Set a countdown for 5 minutes.",
-      "mode": "no-view"
-    },
-    {
-      "name": "start10MinuteTimer",
-      "title": "Start 10 Minute Timer",
-      "description": "Set a countdown for 10 minutes.",
-      "mode": "no-view"
-    },
-    {
       "name": "start15MinuteTimer",
-      "title": "Start 15 Minute Timer",
-      "description": "Set a countdown for 15 minutes.",
-      "mode": "no-view"
-    },
-    {
-      "name": "start25MinuteTimer",
-      "title": "Start 25 Minute Timer",
-      "description": "Set a countdown for 25 minutes.",
+      "title": "Start 15 Minute Sleep Timer",
+      "description": "Set a sleep timer for 15 minutes.",
       "mode": "no-view"
     },
     {
       "name": "start30MinuteTimer",
-      "title": "Start 30 Minute Timer",
-      "description": "Set a countdown for 30 minutes.",
+      "title": "Start 30 Minute Sleep Timer",
+      "description": "Set a sleep timer for 30 minutes.",
       "mode": "no-view"
     },
     {
       "name": "start45MinuteTimer",
-      "title": "Start 45 Minute Timer",
-      "description": "Set a countdown for 45 minutes.",
+      "title": "Start 45 Minute Sleep Timer",
+      "description": "Set a sleep timer for 45 minutes.",
       "mode": "no-view"
     },
     {
       "name": "start60MinuteTimer",
-      "title": "Start 60 Minute Timer",
-      "description": "Set a countdown for 60 minutes.",
+      "title": "Start 60 Minute Sleep Timer",
+      "description": "Set a sleep timer for 60 minutes.",
       "mode": "view"
     },
     {
       "name": "start90MinuteTimer",
-      "title": "Start 90 Minute Timer",
-      "description": "Set a countdown for 90 minutes.",
+      "title": "Start 90 Minute Sleep Timer",
+      "description": "Set a sleep timer for 90 minutes.",
       "mode": "no-view"
     },
     {
       "name": "startCustomTimer",
-      "title": "Start Custom Timer",
-      "description": "Set a countdown for a custom amount of time.",
+      "title": "Start Custom Sleep Timer",
+      "description": "Set a sleep timer for a custom amount of time.",
       "mode": "view",
       "arguments": [
         {
@@ -99,47 +76,15 @@
     {
       "name": "manageTimers",
       "title": "Manage Timers",
-      "description": "View, start, or stop existing countdown timers.",
+      "description": "View, start, or stop existing sleep timers.",
       "mode": "view"
     },
     {
       "name": "timersMenuBar",
       "title": "Timers Menu Bar",
-      "description": "View, start, or stop existing countdown timers from the Menu Bar.",
+      "description": "View, start, or stop existing sleep timers from the Menu Bar.",
       "mode": "menu-bar",
       "interval": "10s"
-    },
-    {
-      "name": "startStopwatch",
-      "title": "Start Stopwatch",
-      "description": "Start a stopwatch",
-      "mode": "no-view",
-      "arguments": [
-        {
-          "name": "name",
-          "placeholder": "stopwatch name",
-          "required": false,
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "name": "manageStopwatches",
-      "title": "Manage Stopwatches",
-      "description": "View, start, or stop existing stopwatches.",
-      "mode": "view"
-    },
-    {
-      "name": "dismissTimerAlert",
-      "title": "Dismiss Timer Alert",
-      "description": "Stop a ringing alert from a finished timer.",
-      "mode": "no-view"
-    },
-    {
-      "name": "previewAlertSounds",
-      "title": "Preview Alert Sounds",
-      "description": "Play samples of different alert sound effects.",
-      "mode": "view"
     }
   ],
   "preferences": [
@@ -206,15 +151,6 @@
       "title": "Timer Alert Type",
       "description": "Whether or not to play the timer alert sound continuously until dismissed.",
       "label": "Ring Continuously",
-      "default": false
-    },
-    {
-      "name": "copyOnSwStop",
-      "type": "checkbox",
-      "required": true,
-      "title": "Copy on Stopwatch Stop",
-      "description": "Whether or not to copy the elapsed time on a stopwatch when it is stopped.",
-      "label": "Copy elapsed time",
       "default": false
     }
   ],

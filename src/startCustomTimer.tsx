@@ -107,7 +107,7 @@ export default function CustomTimerView(props: { arguments: CTInlineArgs }) {
     <Form
       actions={
         <ActionPanel>
-          <Action.SubmitForm title="Start Custom Timer" onSubmit={(values: Values) => handleSubmit(values)} />
+          <Action.SubmitForm title="Start Custom Sleep Timer" onSubmit={(values: Values) => handleSubmit(values)} />
         </ActionPanel>
       }
     >

@@ -7,7 +7,7 @@ import { formatTime } from "./formatUtils";
 
 export default function Command() {
   const {
-    timers,
+    timer,
     customTimers,
     isLoading,
     refreshTimers,
@@ -27,8 +27,8 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading}>
-      <List.Section title={timers?.length !== 0 && timers != null ? "Currently Running" : "No Timers Running"}>
-        {timers?.map((timer) => (
+      <List.Section title={timer ? "Currently Running" : "No Sleep Timers Running"}>
+        {timer && (
           <List.Item
             key={timer.originalFile}
             icon={{ source: Icon.Clock, tintColor: Color.Yellow }}
@@ -37,15 +37,15 @@ export default function Command() {
             accessoryTitle={formatTime(timer.secondsSet) + " originally"}
             actions={
               <ActionPanel>
-                <Action title="Stop Timer" onAction={() => handleStopTimer(timer)} />
+                <Action title="Stop Sleep Timer" onAction={() => handleStopTimer()} />
                 <Action
-                  title="Rename Timer"
+                  title="Rename Sleep Timer"
                   onAction={() =>
                     push(<RenameView currentName={timer.name} originalFile={timer.originalFile} ctID={null} />)
                   }
                 />
                 <Action
-                  title="Save Timer as Preset"
+                  title="Save Sleep Timer as Preset"
                   shortcut={{
                     modifiers: ["cmd", "shift"],
                     key: "enter",
@@ -55,23 +55,23 @@ export default function Command() {
               </ActionPanel>
             }
           />
-        ))}
+        )}
         <List.Item
           key={0}
           icon={Icon.Clock}
-          title={"Create a new timer"}
-          subtitle={"Press Enter to start a timer"}
+          title={"Create a new sleep timer"}
+          subtitle={"Press Enter to start a sleep timer"}
           actions={
             <ActionPanel>
               <Action
-                title="Start Timer"
+                title="Start Sleep Timer"
                 onAction={() => push(<CustomTimerView arguments={{ hours: "", minutes: "", seconds: "" }} />)}
               />
             </ActionPanel>
           }
         />
       </List.Section>
-      <List.Section title="Custom Timers">
+      <List.Section title="Custom Sleep Timers">
         {Object.keys(customTimers)
           ?.sort((a, b) => {
             return customTimers[a].timeInSeconds - customTimers[b].timeInSeconds;
@@ -84,9 +84,9 @@ export default function Command() {
               subtitle={formatTime(customTimers[ctID].timeInSeconds)}
               actions={
                 <ActionPanel>
-                  <Action title="Start Timer" onAction={() => handleStartCT(customTimers[ctID])} />
+                  <Action title="Start Sleep Timer" onAction={() => handleStartCT(customTimers[ctID])} />
                   <Action
-                    title="Rename Timer"
+                    title="Rename Sleep Timer"
                     onAction={() =>
                       push(
                         <RenameView currentName={customTimers[ctID].name} originalFile={"customTimer"} ctID={ctID} />
@@ -94,7 +94,7 @@ export default function Command() {
                     }
                   />
                   <Action
-                    title="Delete Custom Timer"
+                    title="Delete Custom Sleep Timer"
                     shortcut={{
                       modifiers: ["ctrl"],
                       key: "x",

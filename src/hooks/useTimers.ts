@@ -1,10 +1,9 @@
-import { environment } from "@raycast/api";
 import { useState } from "react";
 import {
   createCustomTimer,
   deleteCustomTimer,
   ensureCTFileExists,
-  getTimers,
+  getTimer,
   readCustomTimers,
   startTimer,
   stopTimer,
@@ -12,14 +11,14 @@ import {
 import { CustomTimer, Timer } from "../types";
 
 export default function useTimers() {
-  const [timers, setTimers] = useState<Timer[] | undefined>(undefined);
+  const [timer, setTimer] = useState<Timer | undefined>(undefined);
   const [customTimers, setCustomTimers] = useState<Record<string, CustomTimer>>({});
-  const [isLoading, setIsLoading] = useState<boolean>(timers === undefined);
+  const [isLoading, setIsLoading] = useState<boolean>(timer === undefined);
 
   const refreshTimers = () => {
     ensureCTFileExists();
-    const setOfTimers: Timer[] = getTimers();
-    setTimers(setOfTimers);
+    const t = getTimer();
+    setTimer(t);
     const setOfCustomTimers: Record<string, CustomTimer> = readCustomTimers();
     setCustomTimers(setOfCustomTimers);
     setIsLoading(false);
@@ -30,9 +29,8 @@ export default function useTimers() {
     refreshTimers();
   };
 
-  const handleStopTimer = (timer: Timer) => {
-    setTimers(timers?.filter((t: Timer) => t.originalFile !== timer.originalFile));
-    stopTimer(`${environment.supportPath}/${timer.originalFile}`);
+  const handleStopTimer = () => {
+    stopTimer();
     refreshTimers();
   };
 
@@ -56,7 +54,7 @@ export default function useTimers() {
   };
 
   return {
-    timers,
+    timer,
     customTimers,
     isLoading,
     refreshTimers,
