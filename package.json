@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "sleep-timers",
   "title": "Sleep Timers",
-  "description": "Start, stop, and save sleep timers, directly in Raycast, with no external dependencies.",
+  "description": "Sending your macbook into sleeping mode after the timer runs out, directly in Raycast, with no external dependencies.",
   "icon": "command-icon.png",
   "author": "dtmzr",
   "contributors": [
